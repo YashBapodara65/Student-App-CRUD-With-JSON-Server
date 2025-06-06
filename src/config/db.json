@@ -1,0 +1,25 @@
+{
+  "students": [
+    {
+      "id": "a4238749-9b02-4347-9712-d22795b56dbb",
+      "name": "Uday",
+      "class": "10",
+      "grno": "3421",
+      "rollno": "12"
+    },
+    {
+      "id": "abe13554-6ecc-48ce-8aff-0a34affceb23",
+      "name": "Raj",
+      "class": "10",
+      "grno": "3422",
+      "rollno": "13"
+    },
+    {
+      "id": "51b75a04-bcbd-488c-9daa-ae210d0faee7",
+      "name": "Manav",
+      "class": "12",
+      "grno": "3216",
+      "rollno": "22"
+    }
+  ]
+}
