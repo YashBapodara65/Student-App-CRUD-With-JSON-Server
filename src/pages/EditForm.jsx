@@ -23,18 +23,25 @@ const EditForm = () => {
       navigate("/");
     } else {
       const fetchData = async () => {
-        let savedData = await api.getData();
-        if(savedData.length > 0)
+        try
         {
-          let res = savedData.filter((item) => item.id == id);
-          if(res.length > 0)
+          let savedData = await api.getData();
+          if(savedData.length > 0)
           {
-            setStudentData(res[0])
+            let res = savedData.filter((item) => item.id == id);
+            if(res.length > 0)
+            {
+              setStudentData(res[0])
+            }
+            else
+            {
+              navigate("/");
+            }
           }
-          else
-          {
-            navigate("/");
-          }
+        }
+        catch(err)
+        {
+          console.error("Failed to get data",err);
         }
       }
       fetchData();

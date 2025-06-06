@@ -75,21 +75,32 @@ const Home = () => {
   }, [studentData]);
 
   // used for delete single student record
-  const handleDelete = (id) => {
-    const filterData = studentData.filter((e) => e.id !== id);
-    api.deleteData(id);
-    setStudentData(filterData);
-    toast.success("Student record has been successfully deleted.");
-  };
+  const handleDelete = async (id) => {
+    try {
+      await api.deleteData(id); // wait for deletion to complete
+
+      const filterData = studentData.filter((e) => e.id !== id);
+      setStudentData(filterData);
+      toast.success("Student record has been successfully deleted.");
+    } catch (err) {
+      toast.error("Failed to delete student record.",err);
+    }
+  };  
 
   // used for duplicate or copy of single student record
-  const handleDuplicate = (data) => {
+  const handleDuplicate = async (data) => {
     const newItem = { ...data, id: v4() };
-    const updated = [...studentData, newItem];
-    setStudentData(updated);
-    api.postData(newItem);
-    toast.success("Student record duplicated successfully.!");
-  };
+  
+    try {
+      await api.postData(newItem); // await to ensure the API call completes
+      const updated = [...studentData, newItem];
+      setStudentData(updated);
+      toast.success("Student record duplicated successfully!");
+    } catch (err) {
+      console.error("Duplicate failed:", err);
+      toast.error("Failed to duplicate student record.");
+    }
+  };  
 
   // used for modify or edit of single student record
   const handleEdit = (id) => {
@@ -111,20 +122,25 @@ const Home = () => {
     },
   ];
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const savedData = await api.getData();
-        if (savedData) {
-          setStudentData(savedData);
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-  
+  useEffect(() => {  
     fetchData();
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const savedData = await api.getData();
+  
+      if (Array.isArray(savedData) && savedData.length > 0) {
+        setStudentData(savedData);
+      } else {
+        setStudentData([]); // empty or failed fetch
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setStudentData([]); // fallback in case something throws
+    }
+  };
+  
   
 
   useEffect(() => {

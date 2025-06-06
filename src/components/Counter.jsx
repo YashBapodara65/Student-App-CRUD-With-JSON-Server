@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent, Typography, Grid, Box } from '@mui/material';
+import SkeletonStructure from "../components/SkeletonStructure";
 
 const Counter = ({counters, records}) => {
 
@@ -10,7 +11,6 @@ const Counter = ({counters, records}) => {
   useEffect(()=>{
     if(records)
     {
-
       let classes = records.map((element)=>Number(element.class));
       classes = [...new Set(classes)]
 
@@ -25,7 +25,18 @@ const Counter = ({counters, records}) => {
     }
   },[records]);
 
+  const skeleton_data = [
+  {type : "rounded", width:300, height : 140},
+  {type : "rounded", width:300, height : 140},
+  {type : "rounded", width:300, height : 140},
+  {type : "rounded", width:300, height : 140},
+  ]
+
   return (
+    <>
+    {
+      totalClass.length > 0
+      ?
     <div style={{display:"flex", justifyContent:"center"}}>
         <Box sx={{ p: 2 }} style={{width:"90%"}}>
     <Grid container spacing={5}>
@@ -60,6 +71,14 @@ const Counter = ({counters, records}) => {
     </Grid>
   </Box>
     </div>
+     :
+     <div style={{display:"flex", justifyContent:"center"}}>
+      <div style={{width:"90%", padding:"16px"}}>
+    <SkeletonStructure skeleton_data={skeleton_data} />
+      </div>
+    </div>
+    }
+    </>
   )
 }
 

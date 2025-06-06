@@ -5,6 +5,16 @@ import toast from 'react-hot-toast';
 import appTitle from "../services/studentAppTitle";
 import api from "../services/apiStorageService";
 import {v4} from "uuid";
+import SkeletonStructure from '../components/SkeletonStructure';
+
+const skeleton_data = [
+  {type : "rounded", width:300, height : 140},
+  {type : "rounded", width:300, height : 140},
+  {type : "rounded", width:300, height : 140},
+  {type : "rounded", width:300, height : 140},
+  {type : "rounded", width:300, height : 140},
+  {type : "rounded", width:300, height : 140},
+]
 
 const Form = ({editData}) => {
 
@@ -22,10 +32,15 @@ const Form = ({editData}) => {
         {
           setStore(savedData);
         }
+        else
+        {
+          setStore([])
+        }
       }
       catch(err)
       {
         console.log(err);
+        setStore([])
       }
     }
     fetchData();
@@ -85,7 +100,7 @@ const Form = ({editData}) => {
   };
 
   // handler for add student record
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
   
     setDuplicateVal({
@@ -124,9 +139,16 @@ const Form = ({editData}) => {
   
       const newStore = [...store, studentData];
       setStore(newStore);
-      api.postData(studentData);
-      toast.success("Student record added successfully!");
-      navigate("/");
+      try
+      {
+        await api.postData(studentData);
+        toast.success("Student record added successfully!");
+        navigate("/");
+      }
+      catch(err)
+      {
+        console.error("Failed to post data into api",err);
+      }
     } else {
       // Editing existing record
   
@@ -152,9 +174,16 @@ const Form = ({editData}) => {
         setDuplicateVal(prev => ({ ...prev, rollnoVal: "Please change Roll no" }));
         return;
       }
-      api.updateData(editData?.id,studentData);
-      toast.success("Student record updated successfully!");
-      navigate("/");
+      try
+      {
+        await api.updateData(editData?.id,studentData);
+        toast.success("Student record updated successfully!");
+        navigate("/");
+      }
+      catch(err)
+      {
+        console.error("Failed to update data into api",err);
+      }
     }
   };
   
@@ -170,8 +199,8 @@ const Form = ({editData}) => {
       autoComplete="off"
       style={{display:"flex",width:"500px",boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", borderRadius:"10px", padding:"30px 50px",flexDirection:"column", gap:"30px", marginTop:"50px", justifyContent:"center", alignItems:"center"}}
     >
-      <h1>{editData?.id == undefined ? "Add" : "Edit"} Student Form</h1>
-      <div style={{width:"100%"}}>
+        <h1>{editData?.id == undefined ? "Add" : "Edit"} Student Form</h1>
+        <div style={{width:"100%"}}>
         <TextField id="outlined-search" name="name" onChange={handleChange} onBlur={handleBlur} onFocus={handleFocus} value={studentData.name} style={{width:"100%", marginBottom:"10px"}} label="Student name" type="text" />
         {
           errors.name ? <span style={{color:"red"}}>Student name is required *</span> : ""
@@ -224,6 +253,11 @@ const Form = ({editData}) => {
       </div>
     </Box>
     </div>
+    <div style={{ display: "flex", justifyContent: "center", marginTop:"40px" }}>
+          <div style={{ width: "90%", padding: "16px" }}>
+            <SkeletonStructure skeleton_data={skeleton_data} />
+          </div>
+        </div>
     </>
   )
 }
