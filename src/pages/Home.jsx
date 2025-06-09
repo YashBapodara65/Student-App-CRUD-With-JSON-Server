@@ -17,6 +17,7 @@ const Home = () => {
   const [deleteId, setDeleteId] = useState(null);
   const [totalCount, setTotalCount] = useState([]);
   const [filterValue, setFilterValue] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   appTitle("Dashboard Page");
 
@@ -123,7 +124,10 @@ const Home = () => {
   ];
 
   useEffect(() => {  
-    fetchData();
+    setTimeout(()=>{
+      fetchData();
+      setLoading(false);
+    },500) // Simulate API delay
   }, []);
 
   const fetchData = async () => {
@@ -158,8 +162,9 @@ const Home = () => {
 
   return (
     <>
-      <Counter counters={totalCount} records={studentData} />
+      <Counter counters={totalCount} loading={loading} records={studentData} />
       <TableLayout
+        loading={loading}
         records={studentData}
         tableActions={tableActions}
         rows={totalRows}

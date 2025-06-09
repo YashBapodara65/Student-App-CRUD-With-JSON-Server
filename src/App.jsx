@@ -1,7 +1,6 @@
 import {RouterProvider, createBrowserRouter} from "react-router-dom"
 import Home from "./pages/Home"
 import Form from "./pages/Form"
-import EditForm from "./pages/EditForm"
 import Layout from "./routes/Layout"
 function App() {
 
@@ -20,7 +19,7 @@ function App() {
       },
       {
         path : "/edit-student-form/:id",
-        element : <EditForm/>
+        element : <Form/>
       }
     ]
   },

@@ -1,20 +1,6 @@
 {
   "students": [
     {
-      "id": "e27ad11d-f440-4bc2-9113-85de207caa2b",
-      "name": "Uday",
-      "class": "10",
-      "grno": "3421",
-      "rollno": "12"
-    },
-    {
-      "id": "40412b3d-8d0d-4762-90e7-1d240b1de803",
-      "name": "Manav",
-      "class": "12",
-      "grno": "3216",
-      "rollno": "22"
-    },
-    {
       "id": "fce3b8bf-e672-411a-8bb6-b181076b22bb",
       "name": "Raj",
       "class": "12",
@@ -29,81 +15,11 @@
       "rollno": "11"
     },
     {
-      "id": "6821e876-b20e-4ebb-b9e2-439627f0641a",
-      "name": "Uday",
-      "class": "10",
-      "grno": "3421",
-      "rollno": "12"
-    },
-    {
-      "id": "efb84731-48a5-4814-8056-2ff1c7928ea4",
-      "name": "Uday",
-      "class": "10",
-      "grno": "3421",
-      "rollno": "12"
-    },
-    {
-      "id": "cfee6f8a-6b2a-4354-92fb-f5bc9c652a15",
-      "name": "Uday",
-      "class": "10",
-      "grno": "3421",
-      "rollno": "12"
-    },
-    {
-      "id": "e4c6551c-546c-433e-badd-9a8f79b8b7b0",
-      "name": "Uday",
-      "class": "10",
-      "grno": "3421",
-      "rollno": "12"
-    },
-    {
-      "id": "195ab2fe-cf52-4f62-a09c-0de1be3fcf6a",
-      "name": "Uday",
-      "class": "10",
-      "grno": "3421",
-      "rollno": "12"
-    },
-    {
-      "id": "6090f82d-658a-495f-b756-08539e9fa43a",
-      "name": "Uday",
-      "class": "10",
-      "grno": "3421",
-      "rollno": "12"
-    },
-    {
-      "id": "60aadc0d-f4b1-4ff7-96d2-e98a9f60e824",
-      "name": "Uday",
-      "class": "10",
-      "grno": "3421",
-      "rollno": "12"
-    },
-    {
-      "id": "d6444bd0-bac4-4c32-92a1-973b1e27aa87",
-      "name": "Uday",
-      "class": "10",
-      "grno": "3421",
-      "rollno": "12"
-    },
-    {
-      "id": "247e8bb7-5ee8-4488-87ed-482908500a1d",
-      "name": "Uday",
-      "class": "10",
-      "grno": "3421",
-      "rollno": "12"
-    },
-    {
-      "id": "40a10404-950d-4777-9f19-3a2d65a6765c",
-      "name": "Uday",
-      "class": "10",
-      "grno": "3421",
-      "rollno": "12"
-    },
-    {
-      "id": "0c67f9be-f731-4125-88f9-db8a34b041e5",
-      "name": "Uday",
-      "class": "10",
-      "grno": "3421",
-      "rollno": "12"
+      "id": "40412b3d-8d0d-4762-90e7-1d240b1de803",
+      "name": "Manav",
+      "class": "12",
+      "grno": "3216",
+      "rollno": "22"
     }
   ]
 }

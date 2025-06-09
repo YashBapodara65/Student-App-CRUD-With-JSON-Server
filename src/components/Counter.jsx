@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Card, CardContent, Typography, Grid, Box } from '@mui/material';
-import SkeletonStructure from "../components/SkeletonStructure";
+import { Card, CardContent, Typography, Grid, Box, Skeleton, Stack } from '@mui/material';
 
-const Counter = ({counters, records}) => {
+const Counter = ({counters, records, loading}) => {
 
   // used for unique class with length
   const [totalClass, setClasses] = useState([]);
@@ -26,18 +25,30 @@ const Counter = ({counters, records}) => {
   },[records]);
 
   const skeleton_data = [
-  {type : "rounded", width:300, height : 140},
-  {type : "rounded", width:300, height : 140},
-  {type : "rounded", width:300, height : 140},
-  {type : "rounded", width:300, height : 140},
+  {type : "rounded", width:310, height : 140},
+  {type : "rounded", width:310, height : 140},
+  {type : "rounded", width:310, height : 140},
+  {type : "rounded", width:310, height : 140},
   ]
 
   return (
     <>
     {
-      totalClass.length > 0
+      loading
       ?
-    <div style={{display:"flex", justifyContent:"center"}}>
+          <div style={{display:"flex", justifyContent:"center", marginTop:"20px"}}>
+            <Box sx={{ display: "flex", justifyContent: "center", width: "95%" }}>
+       <Stack direction="row" spacing={5}>
+         {skeleton_data.map((item, index) => (
+           <Skeleton key={index} variant={item.type} width={item.width} height={item.height} />
+         ))}
+       </Stack>
+     </Box>
+          </div>
+     :
+        records.length > 0
+        ?
+            <div style={{display:"flex", justifyContent:"center"}}>
         <Box sx={{ p: 2 }} style={{width:"90%"}}>
     <Grid container spacing={5}>
       {counters?.map((counter) => (
@@ -71,12 +82,8 @@ const Counter = ({counters, records}) => {
     </Grid>
   </Box>
     </div>
-     :
-     <div style={{display:"flex", justifyContent:"center"}}>
-      <div style={{width:"90%", padding:"16px"}}>
-    <SkeletonStructure skeleton_data={skeleton_data} />
-      </div>
-    </div>
+    :
+    "Not records available"
     }
     </>
   )
